@@ -12,8 +12,6 @@ namespace DefaultNamespace
         [SerializeField] private float fillSpeed = 5f;
         [SerializeField] private TextMeshProUGUI _hpPercentText;
         
-
-
         private void Start()
         {
             _heroController = FindObjectOfType<HeroController>();
