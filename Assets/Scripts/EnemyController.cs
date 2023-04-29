@@ -5,8 +5,8 @@ namespace DefaultNamespace
 {
     public class EnemyController : MonoBehaviour
     {
-        [SerializeField] private int damage = 10; // amount of damage dealt to player
-        [SerializeField] private GameObject hitEffectPrefab; // particle effect played when hit
+        [SerializeField] private float _enemyDamage;
+        [SerializeField] private float _enemyHealth;
         private HeroController _heroController;
 
         private void Start()
@@ -14,26 +14,30 @@ namespace DefaultNamespace
             _heroController = FindObjectOfType<HeroController>();
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            // check if collided with player's hit box
-            if (collision.CompareTag("MainHero"))
+            if (other.CompareTag("MainHero"))
             {
-                // deal damage to player
-                HeroController playerHealth = collision.GetComponentInParent<HeroController>();
-                
-                if (playerHealth != null)
-                {
-                    _heroController.CurrentHealth -= damage;
-                    Debug.Log("hahah");
-                }
-
-                // // play hit effect
-                // if (hitEffectPrefab != null)
-                // {
-                //     Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
-                // }
+                // Take damage
+                TakeDamage(_enemyDamage);
             }
         }
+        
+        private void TakeDamage(float damage)
+        {
+            _heroController.CurrentHealth -= damage;
+        
+            if (_heroController.CurrentHealth <= 0)
+            {
+                HeroDie();
+            }
+        }
+        
+        private void HeroDie()
+        {
+            // Destroy the enemy object
+            Destroy(_heroController.gameObject);
+        }
+        
     }
 }

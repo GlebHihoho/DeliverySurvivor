@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ namespace DefaultNamespace
         private HeroController _heroController;
         [SerializeField] private Slider _sliderHelth;
         [SerializeField] private float fillSpeed = 5f;
+        [SerializeField] private TextMeshProUGUI _hpPercentText;
         
 
 
@@ -22,6 +24,7 @@ namespace DefaultNamespace
 
         private void Update()
         {
+            _hpPercentText.text = _sliderHelth.value.ToString();
             _sliderHelth.value = _heroController.CurrentHealth;
             _sliderHelth.value = Mathf.Lerp(_sliderHelth.value, _heroController.CurrentHealth,  fillSpeed * Time.deltaTime);
         }
