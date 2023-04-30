@@ -36,7 +36,7 @@ public class Weapon : MonoBehaviour
                 EnemyController enemy = collider.GetComponent<EnemyController>();
                 if (enemy != null)
                 {
-                    Debug.Log("ha");
+                    Debug.Log("Take Damage");
                     enemy.TakeDamageEnemy(damageAmount);
                 }
             }
