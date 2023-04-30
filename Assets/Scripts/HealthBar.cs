@@ -22,7 +22,7 @@ namespace DefaultNamespace
 
         private void Update()
         {
-            _hpPercentText.text = _sliderHelth.value.ToString();
+            _hpPercentText.text = _sliderHelth.value.ToString() + " %";
             _sliderHelth.value = _heroController.CurrentHealth;
             _sliderHelth.value = Mathf.Lerp(_sliderHelth.value, _heroController.CurrentHealth,  fillSpeed * Time.deltaTime);
         }
