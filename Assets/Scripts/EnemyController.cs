@@ -11,13 +11,14 @@ namespace DefaultNamespace
     {
         [SerializeField] private float _enemyDamage;
         [SerializeField] private float _enemyHealth;
-        public float EnemyHealth;
+        //private float EnemyHealth;
         private HeroController _heroController;
-        [SerializeField] private TextMeshProUGUI _damageText;
+        //[SerializeField] private TextMeshProUGUI _damageText;
+        //[SerializeField] private Text _damageText;
 
         private void Start()
         {
-            EnemyHealth = _enemyHealth;
+            //EnemyHealth = _enemyHealth;
             _heroController = FindObjectOfType<HeroController>();
         }
 
@@ -51,7 +52,7 @@ namespace DefaultNamespace
         
         public void TakeDamageEnemy(float damage)
         {
-            _damageText.text = "-" + damage.ToString();
+            //_damageText.text = "-" + damage.ToString();
             _enemyHealth -= damage;
             if (_enemyHealth <= 0)
             {
