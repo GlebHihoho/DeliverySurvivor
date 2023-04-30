@@ -8,7 +8,7 @@ public class SpawnEnemy : MonoBehaviour
     [SerializeField] private float spawnRadiusMin = 10f;
     [SerializeField] private float spawnRadiusMax = 15f; 
     [SerializeField] private float spawnInterval = 5f; 
-    [SerializeField] private Transform _parentObject;
+    //[SerializeField] private Transform _parentObject;
     [SerializeField] private Transform _hero;
     private float _currentMonsters = 0f; 
     private float _timeSinceLastSpawn = 0f; 
@@ -24,7 +24,7 @@ public class SpawnEnemy : MonoBehaviour
             {
                 Vector2 randomOffset = Random.insideUnitCircle.normalized * Random.Range(spawnRadiusMin, spawnRadiusMax);
                 Vector3 spawnPosition = _hero.position + new Vector3(randomOffset.x, randomOffset.y, 0f);
-                Instantiate(monsterPrefab, spawnPosition, Quaternion.identity, _parentObject);
+                Instantiate(monsterPrefab, spawnPosition, Quaternion.identity/*, _parentObject*/);
                 _currentMonsters++;
                 _timeSinceLastSpawn = 0f;
             }
