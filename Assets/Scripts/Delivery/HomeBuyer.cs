@@ -6,6 +6,7 @@ namespace DefaultNamespace.Delivery
 {
     public class HomeBuyer : MonoBehaviour
     {
+        [SerializeField] private float _income = 10;
         [SerializeField] private string _runeColor;
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -13,6 +14,8 @@ namespace DefaultNamespace.Delivery
             {
                 Debug.Log(_runeColor);
                 Destroy(other.gameObject, 1f);
+                Balance.Instance._balanceValue += _income;
+                
             }
         }
     }

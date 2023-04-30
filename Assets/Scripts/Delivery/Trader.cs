@@ -9,12 +9,14 @@ namespace DefaultNamespace.Delivery
         private ItemDataConfig _itemDataConfig;
         public GameObject [] _itemPrefab;
         private bool _canDeliver = false;
-        public GameObject ItemPrefab;
+        public GameObject ItemPrefab { get; set; }
+        private HeroController _heroController;
+        private InputController _inputController;
 
         private void Start()
         {
-            // _itemDataConfig = new ItemDataConfig();
-
+            _heroController = FindObjectOfType<HeroController>();
+            _inputController = FindObjectOfType<InputController>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -35,19 +37,15 @@ namespace DefaultNamespace.Delivery
 
         private void Update()
         {
-            // if ((_canDeliver && Input.GetKeyDown(KeyCode.E)) && InventoryManager.instance.inventoryItems.Count < 1)
-            // {
-            //     //GameObject itemObject = Instantiate(_itemPrefab);
-            //     InventoryManager.instance.AddItem(_itemPrefab);
-            //     Debug.Log("Item added to inventory.");
-            // }
-            if (!GameObject.FindWithTag("Item"))
+            if (!GameObject.FindWithTag("Item1") && !GameObject.FindWithTag("Item2") && !GameObject.FindWithTag("Item3"))
             {
                 if ((_canDeliver && Input.GetKeyDown(KeyCode.E)) && InventoryManager.instance.inventoryItems.Count < 1)
                 {
                     ItemPrefab = _itemPrefab[UnityEngine.Random.Range(0, _itemPrefab.Length)];
                     InventoryManager.instance.AddItem(ItemPrefab);
                     Debug.Log("Item added to inventory.");
+                    _heroController.PaintTheHero(ItemPrefab.tag);
+                    _inputController.ChangeSpeed(_heroController.ChangeSpeed);
                 }
             }
         }
