@@ -17,6 +17,11 @@ public class ChangeActive : MonoBehaviour
 
     public void ChangeObjectActive()
     {
+        Invoke("Change", 1);
+    }
+
+    public void Change()
+    {
         foreach (var go in objectsToChange)
         {
             go.SetActive(!go.activeInHierarchy);
