@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections;
+using TMPro;
+using UnityEditor.TextCore.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DefaultNamespace
 {
@@ -7,10 +11,13 @@ namespace DefaultNamespace
     {
         [SerializeField] private float _enemyDamage;
         [SerializeField] private float _enemyHealth;
+        public float EnemyHealth;
         private HeroController _heroController;
+        [SerializeField] private TextMeshProUGUI _damageText;
 
         private void Start()
         {
+            EnemyHealth = _enemyHealth;
             _heroController = FindObjectOfType<HeroController>();
         }
 
@@ -18,12 +25,11 @@ namespace DefaultNamespace
         {
             if (other.CompareTag("MainHero"))
             {
-                // Take damage
-                TakeDamage(_enemyDamage);
+                TakeDamageHero(_enemyDamage);
             }
         }
         
-        private void TakeDamage(float damage)
+        private void TakeDamageHero(float damage)
         {
             _heroController.CurrentHealth -= damage;
         
@@ -35,9 +41,24 @@ namespace DefaultNamespace
         
         private void HeroDie()
         {
-            // Destroy the enemy object
             Destroy(_heroController.gameObject);
         }
+        
+        private void Die()
+        {
+            Destroy(gameObject);
+        }
+        
+        public void TakeDamageEnemy(float damage)
+        {
+            _damageText.text = "-" + damage.ToString();
+            _enemyHealth -= damage;
+            if (_enemyHealth <= 0)
+            {
+                Die();
+            }
+        }
+        
         
     }
 }
