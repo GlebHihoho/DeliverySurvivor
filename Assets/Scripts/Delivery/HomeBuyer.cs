@@ -13,9 +13,7 @@ namespace DefaultNamespace.Delivery
             if (other.CompareTag(_runeColor))
             {
                 Debug.Log(_runeColor);
-                Destroy(other.gameObject, 1f);
-                Balance.Instance._balanceValue += _income;
-                
+                Destroy(other.gameObject, 2f);
             }
         }
     }
