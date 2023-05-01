@@ -1,30 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeActive : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private GameObject[] objectsToChange;
-
-    private void Update()
+    public class ChangeActive : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        [SerializeField] private GameObject[] objectsToChange;
+
+        public void ChangeObjectActive()
         {
-            ChangeObjectActive();
-        }
-    }
-
-    public void ChangeObjectActive()
-    {
-        Invoke("Change", 1);
-    }
-
-    public void Change()
-    {
-        foreach (var go in objectsToChange)
-        {
-            go.SetActive(!go.activeInHierarchy);
+            foreach (var go in objectsToChange)
+            {
+                go.SetActive(!go.activeInHierarchy);
+            }
         }
     }
 }

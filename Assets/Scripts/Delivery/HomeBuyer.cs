@@ -1,8 +1,6 @@
-﻿using System;
-using UnityEditor.UIElements;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace DefaultNamespace.Delivery
+namespace Delivery
 {
     public class HomeBuyer : MonoBehaviour
     {

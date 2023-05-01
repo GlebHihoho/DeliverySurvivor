@@ -1,8 +1,6 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
-namespace DefaultNamespace.Delivery
+namespace Delivery
 {
     public class Trader : MonoBehaviour
     {

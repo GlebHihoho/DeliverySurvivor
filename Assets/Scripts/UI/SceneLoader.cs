@@ -1,14 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private string sceneName;
-
-    public void Load()
+    public class SceneLoader : MonoBehaviour
     {
-        SceneManager.LoadSceneAsync(sceneName);
+        [SerializeField] private string sceneName;
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Load();
+
+            }
+        }
+
+        public void Load()
+        {
+            SceneManager.LoadSceneAsync(sceneName);
+            Time.timeScale = 0f;
+
+        }
     }
 }
