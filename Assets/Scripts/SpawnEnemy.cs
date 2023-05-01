@@ -20,11 +20,11 @@ public class SpawnEnemy : MonoBehaviour
         {
             _timeSinceLastSpawn += Time.deltaTime;
 
-            if (_timeSinceLastSpawn >= spawnInterval)
+            if (_timeSinceLastSpawn >= spawnInterval && _currentMonsters < maxMonsters)
             {
                 Vector2 randomOffset = Random.insideUnitCircle.normalized * Random.Range(spawnRadiusMin, spawnRadiusMax);
                 Vector3 spawnPosition = _hero.position + new Vector3(randomOffset.x, randomOffset.y, 0f);
-                Instantiate(monsterPrefab, spawnPosition, Quaternion.identity/*, _parentObject*/);
+                Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);
                 _currentMonsters++;
                 _timeSinceLastSpawn = 0f;
             }
