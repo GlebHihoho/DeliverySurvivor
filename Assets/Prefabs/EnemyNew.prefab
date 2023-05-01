@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTag: MainHero
-  moveSpeed: 5
+  moveSpeed: 0
 --- !u!114 &580401810493471933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,5 +470,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5091e03831164763ad07674c83ba9dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyDamage: 110
+  _enemyDamage: 5
   _enemyHealth: 10

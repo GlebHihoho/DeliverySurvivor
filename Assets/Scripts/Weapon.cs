@@ -1,4 +1,7 @@
 ﻿using DefaultNamespace;
+using Unity.Mathematics;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -7,38 +10,60 @@ public class Weapon : MonoBehaviour
     public float CurrentDamage = 10f;
     public float colliderRadius = 1f;
     public LayerMask enemyLayer;
+    //[SerializeField] private ParticleSystem _slashEffect;
+    [SerializeField] private GameObject _slashEffect;
+    [SerializeField] private Transform _parent;
 
     private HeroController _heroController;
 
     private float nextAttackTime = 0f;
-    [SerializeField] private Collider2D weaponCollider;
+    private bool isFacingRight = true;
 
     private void Start()
     {
         _heroController = FindObjectOfType<HeroController>();
-        weaponCollider = GetComponent<Collider2D>();
-        //CurrentDamage = _heroController.CurrentHeroDamage;
 
     }
 
     private void Update()
     {
+        float horizontal = Input.GetAxisRaw("Horizontal");
+
+        // Check if the character's facing direction needs to be updated
+        if ((horizontal > 0 && !isFacingRight) || (horizontal < 0 && isFacingRight))
+        {
+            isFacingRight = !isFacingRight;
+            transform.Rotate(0f, 180f, 0f);
+        }
+        
+        
         if (Time.time >= nextAttackTime)
         {
             Attack();
             nextAttackTime = Time.time + 1f / attackRate;
         }
     }
-
-    private void Attack()
+    
+    public void Attack() 
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, colliderRadius, enemyLayer);
-
-        foreach (Collider2D collider in colliders)
+        
+        if (isFacingRight)
         {
-            if (collider.CompareTag("Enemy"))
-            {
-                EnemyController enemy = collider.GetComponent<EnemyController>();
+            GameObject slashEffect = Instantiate(_slashEffect, _parent.position, _slashEffect.transform.rotation, _parent);
+            Destroy(slashEffect.gameObject, 0.5f);
+        }
+        else
+        {
+            GameObject slashEffect = Instantiate(_slashEffect, _parent.position, Quaternion.Euler(0, 180, 0) * _slashEffect.transform.rotation, _parent);
+            Destroy(slashEffect.gameObject, 0.5f);
+        }
+        
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, colliderRadius);
+
+        foreach(Collider2D hitCollider in hitColliders) {
+            if(hitCollider.gameObject.CompareTag("Enemy")) {
+                // Apply damage to enemy
+                EnemyController enemy = hitCollider.GetComponent<EnemyController>();
                 if (enemy != null)
                 {
                     Debug.Log("Take Damage");
@@ -48,9 +73,12 @@ public class Weapon : MonoBehaviour
         }
     }
     
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, colliderRadius);
+        
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, colliderRadius);
+        
     }
+
 }
