@@ -471,4 +471,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyDamage: 2
-  _enemyHealth: 20
+  _enemyHealth: 15
