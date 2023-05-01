@@ -45,7 +45,7 @@ namespace DefaultNamespace.Delivery
                     InventoryManager.instance.AddItem(ItemPrefab);
                     Debug.Log("Item added to inventory.");
                     _heroController.PaintTheHero(ItemPrefab.tag);
-                    _inputController.ChangeSpeed(_heroController.ChangeSpeed);
+                    _heroController.ChangeSpeedHero(_heroController.ChangeSpeed);
                 }
             }
         }
