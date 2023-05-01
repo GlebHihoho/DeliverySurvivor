@@ -4,16 +4,21 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public float attackRate = 3f;
-    public float damageAmount = 10f;
+    public float CurrentDamage = 10f;
     public float colliderRadius = 1f;
     public LayerMask enemyLayer;
+
+    private HeroController _heroController;
 
     private float nextAttackTime = 0f;
     [SerializeField] private Collider2D weaponCollider;
 
     private void Start()
     {
+        _heroController = FindObjectOfType<HeroController>();
         weaponCollider = GetComponent<Collider2D>();
+        //CurrentDamage = _heroController.CurrentHeroDamage;
+
     }
 
     private void Update()
@@ -37,7 +42,7 @@ public class Weapon : MonoBehaviour
                 if (enemy != null)
                 {
                     Debug.Log("Take Damage");
-                    enemy.TakeDamageEnemy(damageAmount);
+                    enemy.TakeDamageEnemy(CurrentDamage);
                 }
             }
         }

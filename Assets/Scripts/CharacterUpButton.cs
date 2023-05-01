@@ -17,9 +17,11 @@ namespace DefaultNamespace
         [SerializeField] private float _currentLevelUpPrice;
         [SerializeField] private Button _button;
         [SerializeField] private float _stepIncreasePrice = 5f;
-        [SerializeField] private float _increaseSpeed;
-        [SerializeField] private float _increaseHealth;
-        [SerializeField] private float _increaseDamage;
+        [SerializeField] private float _increaseCharacters;
+
+        private Weapon _weapon;
+        //[SerializeField] private float _increaseHealth;
+        //[SerializeField] private float _increaseDamage;
         private int _indexSprite = 0;
 
         private ViewCharacters _viewCharacters;
@@ -36,6 +38,7 @@ namespace DefaultNamespace
 
 
 
+            _weapon = FindObjectOfType<Weapon>();
 
 
         }
@@ -49,7 +52,7 @@ namespace DefaultNamespace
                 Balance.Instance._balanceValue -= _currentLevelUpPrice;
                 _currentLevelUpPrice += _stepIncreasePrice; 
                 _levelUpPrice.text = _currentLevelUpPrice.ToString();
-                _heroController.CurrentSpeed += _increaseSpeed;
+                _heroController.CurrentSpeed += _increaseCharacters;
                 _viewCharacters._maxSpeed.text = _heroController.CurrentSpeed.ToString();
 
             }
@@ -60,7 +63,7 @@ namespace DefaultNamespace
                 _currentLevelUpPrice += _stepIncreasePrice; 
                 _button.interactable = false;
                 _levelUpPrice.text = "Max Level";
-                _heroController.CurrentSpeed += _increaseSpeed;
+                _heroController.CurrentSpeed += _increaseCharacters;
                 _viewCharacters._maxSpeed.text = _heroController.CurrentSpeed.ToString();
             }
         }
@@ -73,8 +76,8 @@ namespace DefaultNamespace
                 Balance.Instance._balanceValue -= _currentLevelUpPrice;
                 _currentLevelUpPrice += _stepIncreasePrice; 
                 _levelUpPrice.text = _currentLevelUpPrice.ToString();
-                _heroController.MaxHealth += _increaseHealth;
-                _heroController.CurrentHealth += _increaseHealth;
+                _heroController.MaxHealth += _increaseCharacters;
+                _heroController.CurrentHealth += _increaseCharacters;
                 _viewCharacters._maxHealth.text = _heroController.MaxHealth.ToString();
             }
             else
@@ -84,8 +87,8 @@ namespace DefaultNamespace
                 _currentLevelUpPrice += _stepIncreasePrice; 
                 _button.interactable = false;
                 _levelUpPrice.text = "Max Level";
-                _heroController.MaxHealth += _increaseHealth;
-                _heroController.CurrentHealth += _increaseHealth;
+                _heroController.MaxHealth += _increaseCharacters;
+                _heroController.CurrentHealth += _increaseCharacters;
                 _viewCharacters._maxHealth.text = _heroController.MaxHealth.ToString();
             }
         }
@@ -98,8 +101,8 @@ namespace DefaultNamespace
                 Balance.Instance._balanceValue -= _currentLevelUpPrice;
                 _currentLevelUpPrice += _stepIncreasePrice; 
                 _levelUpPrice.text = _currentLevelUpPrice.ToString();
-                _heroController.CurrentHeroDamage = _increaseDamage;
-                _viewCharacters._maxDamage.text = _heroController.CurrentHeroDamage.ToString();
+                _weapon.CurrentDamage += _increaseCharacters;
+                _viewCharacters._maxDamage.text = _weapon.CurrentDamage.ToString();
 
             }
             else
@@ -109,8 +112,8 @@ namespace DefaultNamespace
                 _currentLevelUpPrice += _stepIncreasePrice; 
                 _button.interactable = false;
                 _levelUpPrice.text = "Max Level";
-                _heroController.CurrentHeroDamage = _increaseDamage;
-                _viewCharacters._maxDamage.text = _heroController.CurrentHeroDamage.ToString();
+                _weapon.CurrentDamage += _increaseCharacters;
+                _viewCharacters._maxDamage.text = _weapon.CurrentDamage.ToString();
             }
         }
     }

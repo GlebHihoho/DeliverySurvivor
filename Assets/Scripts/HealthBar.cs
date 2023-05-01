@@ -16,13 +16,14 @@ namespace DefaultNamespace
         {
             _heroController = FindObjectOfType<HeroController>();
             _heroController.OnMaxHealthChanged += UpdateMaxHealth;
-            _sliderHelth.maxValue = _heroController.MaxHealth;
             
         }
 
         private void Update()
         {
-            _hpPercentText.text = _sliderHelth.value.ToString() + " %";
+            _sliderHelth.maxValue = _heroController.MaxHealth;
+            //_hpPercentText.text = _sliderHelth.value.ToString() + "/" + _sliderHelth.value.ToString();
+            _hpPercentText.text = _sliderHelth.value.ToString() + "/" + _heroController.MaxHealth.ToString();
             _sliderHelth.value = _heroController.CurrentHealth;
             _sliderHelth.value = Mathf.Lerp(_sliderHelth.value, _heroController.CurrentHealth,  fillSpeed * Time.deltaTime);
         }

@@ -11,21 +11,23 @@ namespace DefaultNamespace
         public TextMeshProUGUI _maxDamage;
 
         private HeroController _heroController;
+        private Weapon _weapon;
 
 
         private void Start()
         {
+            _weapon = FindObjectOfType<Weapon>();
             _heroController = FindObjectOfType<HeroController>();
-            _maxSpeed.text = _heroController.MaxHealth.ToString();
-            _maxHealth.text = _heroController.CurrentHeroDamage.ToString();
-            _maxDamage.text = _heroController.CurrentSpeed.ToString();
+            _maxHealth.text = _heroController.MaxHealth.ToString();
+            _maxDamage.text = _weapon.CurrentDamage.ToString();
+            _maxSpeed.text = _heroController.CurrentSpeed.ToString();
         }
 
         private void Update()
         {
-            _maxSpeed.text = _heroController.MaxHealth.ToString();
-            _maxHealth.text = _heroController.CurrentHeroDamage.ToString();
-            _maxDamage.text = _heroController.CurrentSpeed.ToString();
+            _maxHealth.text = _heroController.MaxHealth.ToString();
+            _maxDamage.text = _weapon.CurrentDamage.ToString();
+            _maxSpeed.text = _heroController.CurrentSpeed.ToString();
         }
     }
     

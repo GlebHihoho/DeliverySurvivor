@@ -8,7 +8,6 @@ public class InputController : MonoBehaviour
 {
     private HeroController _heroController;
     private bool isFacingRight = true; // flag for character direction
-    private float _speed = 10f;
 
     private void Start()
     {
