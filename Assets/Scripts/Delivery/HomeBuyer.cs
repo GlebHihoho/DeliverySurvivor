@@ -13,8 +13,8 @@ namespace DefaultNamespace.Delivery
             if (other.CompareTag(_runeColor))
             {
                 Debug.Log(_runeColor);
-                Destroy(other.gameObject, 1f);
-                Invoke("ChangeBalance", 1f);
+                Destroy(other.gameObject, 2f);
+                Invoke("ChangeBalance", 2f);
             }
         }
 
