@@ -15,9 +15,9 @@ namespace DefaultNamespace
         [SerializeField] private float _heroDamage = 5;
         [SerializeField] private float _changeSpeed;
         [SerializeField] private float _startSpeed = 5f;
-        [SerializeField] private float _currentspeed = 5f; // movement speed
+        [SerializeField] private float _currentspeed = 5f;
 
-        public float CurrentSpeed { get; set; }
+        public float CurrentSpeed;
         public float CurrentHeroDamage { get; set; }
         public float MaxHealth { get; set; } 
         public float CurrentHealth { get; set; }
@@ -53,7 +53,7 @@ namespace DefaultNamespace
 
         private void Update()
         {
-            CurrentSpeed = _currentspeed;
+            //CurrentSpeed = _currentspeed;
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (_inventoryManager.inventoryItems.Count > 0)

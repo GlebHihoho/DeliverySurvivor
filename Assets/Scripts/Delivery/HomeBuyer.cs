@@ -14,7 +14,13 @@ namespace DefaultNamespace.Delivery
             {
                 Debug.Log(_runeColor);
                 Destroy(other.gameObject, 2f);
+                Invoke("ChangeBalance", 2f);
             }
+        }
+
+        private void ChangeBalance()
+        {
+            Balance.Instance._balanceValue += _income;
         }
     }
 }
